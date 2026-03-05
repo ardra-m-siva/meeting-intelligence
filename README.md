@@ -1,16 +1,53 @@
-# React + Vite
+# Project Title
+Meeting Intelligence Hub
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## The Problem
+Meetings often contain important discussions, but it is difficult to remember everything that was said. Manually writing notes and summaries takes time and can miss important details.
 
-Currently, two official plugins are available:
+## The Solution
+Meeting Intelligence Hub allows users to upload meeting recordings and automatically generate transcripts. The system also analyzes the meeting content to provide insights such as summaries and sentiment analysis.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech Stack
+- Frontend: React
+- Backend: Django
+- Programming Language: Python, JavaScript
+- Database: SQLite / PostgreSQL
+- APIs / Libraries: gorq ai
 
-## React Compiler
+## Setup Instructions
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 1. Clone the repository
+### 2. Backend Setup
+    git clone https://github.com/ardra-m-siva/meeting-intelligence-server.git
 
-## Expanding the ESLint configuration
+    run: 
+    python -m venv venv
+    venv\Scripts\activate
+    pip install -r requirements.txt
+    python manage.py makemigrations
+    python manage.py migrate
+    python manage.py runserver
+### 3. Frontend Setup
+    git clone https://github.com/ardra-m-siva/meeting-intelligence.git
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+    run:
+    npm install
+    npm run dev
+### 4. Open the Application in brower
+---
+
+## Features
+- Upload meeting recordings
+- Automatic transcription
+- View meeting transcripts
+- Chatbot interaction
+- Sentiment analysis
+
+
+### .env---------------
+DB_NAME=
+DB_USER=
+DB_PASSWORD=
+DB_HOST=
+DB_PORT=5432
+GROQ_API_KEY=

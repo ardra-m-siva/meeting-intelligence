@@ -30,6 +30,7 @@ const Sidebar = () => {
                     <NavItem to="/" label="Dashboard" />
                     <NavItem to="/upload" label="Upload" />
                     <NavItem to="/meetings" label="Meetings" />
+                    <NavItem to="/chat" label="Chatbot" />
                     <NavItem to="/sentiment" label="Sentiment" />
                 </nav>
             </div>
