@@ -191,7 +191,7 @@ const Chat = () => {
                     </button>
                 </form>
                 <p className='text-xs text-slate-400 mt-2'>
-                    💡 Try asking: "What were the main decisions?" or "What is John responsible for?"
+                    <i className="fa-solid fa-lightbulb text-shadow-amber-400"></i> Try asking: "What were the main decisions?" or "What is John responsible for?"
                 </p>
             </div>
         </div>

@@ -2,7 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom';
 
 const Sidebar = () => {
-    function NavItem({ to, label }) {
+    function NavItem({ to, label ,icon}) {
         return (
             <NavLink
                 to={to}
@@ -14,6 +14,7 @@ const Sidebar = () => {
                     }`
                 }
             >
+                <i className={`${icon} me-2`}></i>
                 {label}
             </NavLink>
         );
@@ -27,11 +28,11 @@ const Sidebar = () => {
 
                 {/* Navigation Links */}
                 <nav className="flex flex-col space-y-3">
-                    <NavItem to="/" label="Dashboard" />
-                    <NavItem to="/upload" label="Upload" />
-                    <NavItem to="/meetings" label="Meetings" />
-                    <NavItem to="/chat" label="Chatbot" />
-                    <NavItem to="/sentiment" label="Sentiment" />
+                    <NavItem to="/" label="Dashboard" icon='fa-solid fa-chart-line' />
+                    <NavItem to="/upload" label="Upload" icon='fa-solid fa-file-export' />
+                    <NavItem to="/meetings" label="Meetings" icon='fa-solid fa-handshake' />
+                    <NavItem to="/chat" label="Chatbot" icon='fa-solid fa-comments' />
+                    <NavItem to="/sentiment" label="Sentiment" icon='fa-solid fa-face-grin' />
                 </nav>
             </div>
         </>

@@ -226,7 +226,7 @@ const Sentiment = () => {
                                 {sentimentData && sentimentData.timeline && (
                                     <div className="mb-6">
                                         <h4 className="font-semibold mb-3 flex items-center">
-                                            <span className="mr-2">📊</span>
+                                            <span className="mr-2"><i className="fa-solid fa-chart-column"></i></span>
                                             Sentiment Timeline
                                         </h4>
                                         <div className="space-y-2">
@@ -248,7 +248,7 @@ const Sentiment = () => {
                                     <>
                                         <div className="mb-6">
                                             <h4 className="font-semibold mb-3 flex items-center">
-                                                <span className="mr-2">📊</span>
+                                                <span className="mr-2"><i className="fa-solid fa-chart-column"></i></span>
                                                 Overall Sentiment Summary
                                             </h4>
                                             <div className="p-4 bg-slate-700 rounded">
@@ -337,7 +337,7 @@ const Sentiment = () => {
                                 ) : speakerData && (!speakerData.speakers || !Array.isArray(speakerData.speakers) || speakerData.speakers.length === 0) ? (
                                     <div className="mb-6">
                                         <div className="text-center py-4">
-                                            <div className="text-slate-400 mb-2">👥</div>
+                                                <div className="text-slate-400 mb-2"><i className="fa-solid fa-user-group"></i></div>
                                             <p className="text-sm text-slate-400">No speaker analysis available for this transcript</p>
                                             <p className="text-xs text-slate-500">The transcript may not have the expected speaker format</p>
                                         </div>
@@ -348,7 +348,7 @@ const Sentiment = () => {
                                 {flaggedSections && flaggedSections.flagged_sections && (
                                     <div className="mb-6">
                                         <h4 className="font-semibold mb-3 flex items-center">
-                                            <span className="mr-2">🚨</span>
+                                            <span className="mr-2"><i class="fa-solid fa-font-awesome text-red-600"></i></span>
                                             Flagged Sections ({flaggedSections.flagged_sections.length})
                                         </h4>
                                         <div className="space-y-2">
@@ -386,7 +386,7 @@ const Sentiment = () => {
                                 {analysisStatus === 'cached' && (
                                     <div className="text-center py-4 mb-4">
                                         <div className="inline-flex items-center px-3 py-1 rounded-full bg-green-900 text-green-300 text-sm">
-                                            <span className="mr-2">💾</span>
+                                            <span className="mr-2"><i className="fa-solid fa-floppy-disk"></i></span>
                                             Using cached analysis
                                         </div>
                                     </div>
@@ -395,7 +395,7 @@ const Sentiment = () => {
                                 {analysisStatus === 'rate-limited' && (
                                     <div className="text-center py-8">
                                         <div className="text-red-400 mb-4">
-                                            <div className="text-2xl mb-2">⏱️</div>
+                                            <div className="text-2xl mb-2"><i className="fa-solid fa-alarm-clock"></i></div>
                                             <p className="font-semibold">Rate Limit Reached</p>
                                             <p className="text-sm">API token limit exceeded. Please wait before trying again.</p>
                                         </div>
@@ -411,7 +411,7 @@ const Sentiment = () => {
                                 {analysisStatus === 'completed' && (
                                     <div className="text-center py-4 mb-4">
                                         <div className="inline-flex items-center px-3 py-1 rounded-full bg-blue-900 text-blue-300 text-sm">
-                                            <span className="mr-2">✨</span>
+                                            <span className="mr-2"><i className="fa-solid fa-arrow-trend-up"></i></span>
                                             Fresh analysis completed
                                         </div>
                                     </div>
