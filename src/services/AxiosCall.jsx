@@ -2,7 +2,7 @@ import axios from "axios"
 import { baseUrl } from "./BaseUrl"
 
 export const AxiosCall =async (method, endpoint, dataList, headerData, isFormdata) => {
-    try {        
+    try {
         const url = baseUrl + endpoint
         let body = {
             method,
@@ -20,7 +20,7 @@ export const AxiosCall =async (method, endpoint, dataList, headerData, isFormdat
         const response = await axios(body)
         return response
     } catch (error) {
-        console.log(error);
-        return error
+        console.log("AxiosCall error:", error);
+        throw error  // Throw the error instead of returning it
     }
 }

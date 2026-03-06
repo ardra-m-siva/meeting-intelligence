@@ -32,28 +32,33 @@ const Dashboard = () => {
     const calculateStats = () => {
         let totalMeetings = 0;
         let totalActionItems = 0;
+        let totalProjects = 0;
         let allTranscriptsList = [];
 
         Object.keys(transcripts).forEach(project => {
+            totalProjects++;
             const projectTranscripts = transcripts[project];
             totalMeetings += projectTranscripts.length;
+
+            projectTranscripts.forEach(t => {
+                totalActionItems += (t.action_items_count || 0);
+            });
+
             allTranscriptsList = [...allTranscriptsList, ...projectTranscripts];
         });
 
-        // Note: Action items count would need to fetch individual transcripts
-        // For now, we'll display this as fetch needed
-        
         return {
             totalMeetings,
+            totalProjects,
             totalActionItems,
             allTranscriptsList
         };
     };
 
     const stats = calculateStats();
-    const recentMeetings = stats.allTranscriptsList.slice(0, 5).sort((a, b) => 
-        new Date(b.uploaded_at) - new Date(a.uploaded_at)
-    );
+    const recentMeetings = stats.allTranscriptsList
+        .sort((a, b) => new Date(b.uploaded_at) - new Date(a.uploaded_at))
+        .slice(0, 5);
 
     function StatCard({ title, value }) {
         return (
@@ -87,9 +92,10 @@ const Dashboard = () => {
             {error && <p className='text-red-500'>{error}</p>}
 
             {/* Stats Section */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                 <StatCard title="Total Meetings" value={stats.totalMeetings} />
-                <StatCard title="Total Projects" value={Object.keys(transcripts).length} />
+                <StatCard title="Total Projects" value={stats.totalProjects} />
+                <StatCard title="Total Action Items" value={stats.totalActionItems} />
                 <StatCard title="Recent Upload" value={recentMeetings.length > 0 ? new Date(recentMeetings[0].uploaded_at).toLocaleDateString() : "N/A"} />
             </div>
 
@@ -114,7 +120,7 @@ const Dashboard = () => {
                                     <tr key={index} className="hover:bg-slate-700">
                                         <td className="border border-slate-700 px-4 py-2">{meeting.file_name}</td>
                                         <td className="border border-slate-700 px-4 py-2">
-                                            {Object.keys(transcripts).find(project => 
+                                            {Object.keys(transcripts).find(project =>
                                                 transcripts[project].some(t => t.id === meeting.id)
                                             )}
                                         </td>

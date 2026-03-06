@@ -1,0 +1,50 @@
+Date: 10/3/2026
+Participants: Alex (Project Manager), Sarah
+(Frontend Developer), David (Backend Developer), Priya (UI/UX Designer)
+
+Alex: Good morning everyone. Let’s start the weekly meeting. First, I
+want to discuss the progress of the new dashboard feature.
+
+Sarah: The frontend layout is mostly complete. I finished the sidebar
+navigation and integrated the main dashboard components. However, there
+are still a few styling issues on smaller screens.
+
+Priya: I noticed that too. The mobile responsiveness needs improvement,
+especially the sidebar collapsing behavior.
+
+Alex: Okay, can we prioritize fixing the responsiveness this week?
+
+Sarah: Yes, I can handle that. It should take about one or two days.
+
+David: On the backend side, I completed the API for fetching meeting
+data. It is working well, but we still need authentication before
+deploying it.
+
+Alex: That’s good progress. Are there any blockers?
+
+David: Not really. I just need the final API endpoints confirmed.
+
+Priya: I also finished the updated UI designs for the chat interface.
+The new design should make it easier for users to interact with the
+meeting assistant.
+
+Alex: Great work. Please share the design files after the meeting.
+
+Sarah: I’ll start implementing the chat UI once I receive the designs.
+
+Alex: Perfect. Let’s also talk about the sentiment analysis feature.
+
+David: I tested the sentiment analysis API yesterday. It correctly
+identifies positive and negative feedback from meeting transcripts.
+
+Priya: That sounds useful. It will help managers quickly understand the
+mood of the meeting.
+
+Alex: Exactly. If everything goes well, we can include it in the next
+demo.
+
+Sarah: That’s exciting. I think the dashboard will look really good once
+all the features are connected.
+
+Alex: Alright, thanks everyone. Let’s aim to complete these tasks before
+Friday.

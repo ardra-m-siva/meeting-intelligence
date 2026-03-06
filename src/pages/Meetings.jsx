@@ -49,7 +49,7 @@ const Meetings = () => {
 
     const handleExport = async (transcriptId) => {
         try {
-            const result = await AxiosCall('GET', `api/transcript/${transcriptId}/items/export/?format=csv`, {}, false, false);
+            const result = await AxiosCall('GET', `api/transcript/${transcriptId}/items/export/?export_format=csv`, {}, false, false);
             if (result.status === 200) {
                 // Create a blob and download
                 const blob = new Blob([result.data], { type: 'text/csv' });
@@ -68,6 +68,25 @@ const Meetings = () => {
         }
     };
 
+    const handleDelete = async (transcriptId) => {
+        if (!window.confirm("Are you sure you want to delete this transcript? This action cannot be undone.")) {
+            return;
+        }
+        try {
+            const result = await AxiosCall('DELETE', `api/transcript/${transcriptId}/delete/`, {}, false, false);
+            if (result.status === 200) {
+                setError("");
+                setSelectedTranscript(null);
+                setTranscriptItems(null);
+                // Refresh the transcripts list
+                fetchTranscripts();
+            }
+        } catch (error) {
+            console.log(error);
+            setError("Failed to delete transcript");
+        }
+    };
+
     if (loading) {
         return (
             <div className='space-y-6'>
@@ -83,12 +102,15 @@ const Meetings = () => {
             allTranscripts.push({ ...t, project });
         });
     });
+    // Sort by latest upload first
+    allTranscripts.sort((a, b) => new Date(b.uploaded_at) - new Date(a.uploaded_at));
 
     return (
         <div className='space-y-6'>
             <div>
                 <h1 className="text-2xl font-semibold">Meetings</h1>
                 <p className="text-slate-400">View and manage your meeting transcripts</p>
+                <p className="text-sm text-slate-500 mt-2">Total Transcripts: <span className="font-semibold text-slate-300">{allTranscripts.length}</span></p>
             </div>
 
             {error && <p className='text-red-500'>{error}</p>}
@@ -96,24 +118,28 @@ const Meetings = () => {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 {/* Transcripts List */}
                 <div className="lg:col-span-1">
-                    <h2 className="text-lg font-semibold mb-4">Transcripts</h2>
+                    <h2 className="text-lg font-semibold mb-4">Transcripts <span className="text-sm text-slate-400">({allTranscripts.length})</span></h2>
                     <div className="space-y-2 max-h-96 overflow-y-auto">
                         {allTranscripts.length > 0 ? (
-                            allTranscripts.map((transcript) => (
+                            allTranscripts.map((transcript, index) => (
                                 <div
                                     key={transcript.id}
                                     onClick={() => fetchTranscriptItems(transcript.id)}
-                                    className={`p-3 rounded cursor-pointer transition ${
-                                        selectedTranscript === transcript.id
+                                    className={`p-3 rounded cursor-pointer transition ${selectedTranscript === transcript.id
                                             ? 'bg-blue-600'
                                             : 'bg-slate-700 hover:bg-slate-600'
-                                    }`}
+                                        }`}
                                 >
-                                    <p className="font-semibold text-sm truncate">{transcript.file_name}</p>
-                                    <p className="text-xs text-slate-400">{transcript.project}</p>
-                                    <p className="text-xs text-slate-400">
-                                        {new Date(transcript.uploaded_at).toLocaleDateString()}
-                                    </p>
+                                    <div className="flex items-start gap-2">
+                                        <span className="text-xs font-bold text-slate-400 min-w-fit">{index + 1}.</span>
+                                        <div className="flex-1 min-w-0">
+                                            <p className="font-semibold text-sm truncate">{transcript.file_name}</p>
+                                            <p className="text-xs text-slate-400">{transcript.project}</p>
+                                            <p className="text-xs text-slate-400">
+                                                {new Date(transcript.uploaded_at).toLocaleDateString()}
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
                             ))
                         ) : (
@@ -141,12 +167,20 @@ const Meetings = () => {
                                                     Project: {allTranscripts.find(t => t.id === selectedTranscript)?.project}
                                                 </p>
                                             </div>
-                                            <button
-                                                onClick={() => handleExport(selectedTranscript)}
-                                                className="bg-green-600 hover:bg-green-700 px-4 py-2 rounded text-sm"
-                                            >
-                                                Export CSV
-                                            </button>
+                                            <div className="flex gap-2">
+                                                <button
+                                                    onClick={() => handleExport(selectedTranscript)}
+                                                    className="bg-green-600 hover:bg-green-700 px-4 py-2 rounded text-sm text-white"
+                                                >
+                                                    Export CSV
+                                                </button>
+                                                <button
+                                                    onClick={() => handleDelete(selectedTranscript)}
+                                                    className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded text-sm text-white"
+                                                >
+                                                    Delete
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
 
