@@ -20,6 +20,8 @@ Meeting Intelligence Hub allows users to upload meeting recordings and automatic
 ### 2. Backend Setup
     git clone https://github.com/ardra-m-siva/meeting-intelligence-server.git
 
+    create .env
+
     run: 
     python -m venv venv
     venv\Scripts\activate
@@ -34,7 +36,14 @@ Meeting Intelligence Hub allows users to upload meeting recordings and automatic
     npm install
     npm run dev
 ### 4. Open the Application in brower
----
+
+### .env---------------
+DB_NAME=
+DB_USER=
+DB_PASSWORD=
+DB_HOST=
+DB_PORT=5432
+GROQ_API_KEY=
 
 ## Features
 - Upload meeting recordings
@@ -44,10 +53,3 @@ Meeting Intelligence Hub allows users to upload meeting recordings and automatic
 - Sentiment analysis
 
 
-### .env---------------
-DB_NAME=
-DB_USER=
-DB_PASSWORD=
-DB_HOST=
-DB_PORT=5432
-GROQ_API_KEY=
