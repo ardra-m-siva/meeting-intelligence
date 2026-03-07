@@ -7,6 +7,14 @@ The goal is to make meeting discussions **easy to understand, searchable, and ac
 
 ---
 
+## Demo Tutorial
+
+Watch the full project demonstration here:
+
+    https://drive.google.com/drive/folders/17xuoBKIlCZk4G_eTix1QXAnPqd60F5gC?usp=drive_link
+
+---
+
 ## Problem Statement
 Meetings often produce long transcripts that are difficult and time-consuming to read and analyze.
 
